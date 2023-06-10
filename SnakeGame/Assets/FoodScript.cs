@@ -7,7 +7,7 @@ public class FoodScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        RandomizePosition();
     }
 
     // Update is called once per frame
@@ -16,14 +16,18 @@ public class FoodScript : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.tag == "Player")
         {
-            float xPos = Random.Range(SpawnArea.bounds.min.x,  SpawnArea.bounds.max.x);
-            float yPos = Random.Range(SpawnArea.bounds.min.y, SpawnArea.bounds.max.y);
-            transform.position = new Vector3(Mathf.Round(xPos), Mathf.Round(yPos));
-            Debug.Log($"new position ({xPos}, {yPos})");
+            RandomizePosition();
         }
+    }
+
+    private void RandomizePosition()
+    {
+        float xPos = Random.Range(SpawnArea.bounds.min.x,  SpawnArea.bounds.max.x);
+        float yPos = Random.Range(SpawnArea.bounds.min.y, SpawnArea.bounds.max.y);
+        transform.position = new Vector3(Mathf.Round(xPos), Mathf.Round(yPos));
     }
 }

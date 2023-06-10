@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 25
+  InitialSize: 4
   Rigidbody: {fileID: 176953584}
   BodySegment: {fileID: 5069273736380719388, guid: c8f25317e4e19a6448fdffb937fb4294,
     type: 3}

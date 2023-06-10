@@ -6,6 +6,7 @@ public class SnakeScript : MonoBehaviour
     private Dictionary<KeyCode, Vector3> m_DirectionResolver;
     private float m_Speed = 25;
     private Vector3 m_Direction;
+    public Rigidbody2D Rigidbody;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,6 @@ public class SnakeScript : MonoBehaviour
 
     private void Move(Vector3 direction)
     {
-        transform.Translate(direction * m_Speed * Time.deltaTime);
+        Rigidbody.velocity = direction * m_Speed;
     }
 }

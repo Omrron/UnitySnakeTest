@@ -8,6 +8,7 @@ public class SnakeScript : MonoBehaviour
     private List<Transform> m_Segments;
 
     public float Speed = 25;
+    public int InitialSize = 4;
     public Rigidbody2D Rigidbody;
     public Transform BodySegment;
 
@@ -25,6 +26,11 @@ public class SnakeScript : MonoBehaviour
         m_Segments = new List<Transform>() {transform };
 
         InvokeRepeating("Move", 0.2f, 1/Speed);
+
+        for (int i = 0; i < InitialSize; i++)
+        {
+            Grow();
+        }
     }
 
     // Update is called once per frame

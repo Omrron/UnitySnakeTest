@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SnakeScript : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class SnakeScript : MonoBehaviour
             {KeyCode.S, Vector2.down },
             {KeyCode.D, Vector2.right }
         };
-        m_Direction = Vector2.zero;
+        m_Direction = Vector2.down;
         m_Segments = new List<Transform>() {transform };
 
         InvokeRepeating("Move", 0.2f, 1/Speed);
@@ -51,12 +52,16 @@ public class SnakeScript : MonoBehaviour
         {
             Grow();
         }
+        if (collision.tag == "Boundary" || collision.tag == "Player")
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void Grow()
     {
         Transform segment = Instantiate(BodySegment);
-        segment.position = m_Segments[m_Segments.Count - 1].position;
+        segment.position = m_Segments[m_Segments.Count - 1].position - new Vector3(m_Direction.x, m_Direction.y, 0f);
         m_Segments.Add(segment);
     }
 

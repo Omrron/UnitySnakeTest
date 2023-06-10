@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Boundry
+  - Food
+  - Boundary
   layers:
   - Default
   - TransparentFX

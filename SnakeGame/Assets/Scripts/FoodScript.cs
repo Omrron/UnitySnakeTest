@@ -26,8 +26,9 @@ public class FoodScript : MonoBehaviour
 
     private void RandomizePosition()
     {
-        float xPos = Random.Range(SpawnArea.bounds.min.x,  SpawnArea.bounds.max.x);
-        float yPos = Random.Range(SpawnArea.bounds.min.y, SpawnArea.bounds.max.y);
-        transform.position = new Vector3(Mathf.Round(xPos), Mathf.Round(yPos));
+        float xPos = Mathf.Round(Random.Range(SpawnArea.bounds.min.x, SpawnArea.bounds.max.x / 2));
+        float yPos = Mathf.Round(Random.Range(SpawnArea.bounds.min.y, SpawnArea.bounds.max.y / 2));
+
+        transform.position = new Vector3(Mathf.Round(xPos * 2 + 1), Mathf.Round(yPos * 2 + 1));
     }
 }

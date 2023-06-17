@@ -61,7 +61,7 @@ public class SnakeScript : MonoBehaviour
     private void Grow()
     {
         Transform segment = Instantiate(BodySegment);
-        segment.position = m_Segments[m_Segments.Count - 1].position - new Vector3(m_Direction.x, m_Direction.y, 0f);
+        segment.position = m_Segments[m_Segments.Count - 1].position - new Vector3(m_Direction.x * 2, m_Direction.y * 2, 0f);
         m_Segments.Add(segment);
     }
 
@@ -72,6 +72,6 @@ public class SnakeScript : MonoBehaviour
             m_Segments[i].position = m_Segments[i-1].position;
         }
 
-        transform.position += new Vector3(Mathf.Round(m_Direction.x), Mathf.Round(m_Direction.y), 0f);
+        transform.position += new Vector3(Mathf.Round(m_Direction.x * 2), Mathf.Round(m_Direction.y * 2), 0f);
     }
 }

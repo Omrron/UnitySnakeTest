@@ -9,6 +9,7 @@ public class SnakeScript : MonoBehaviour
     private List<Transform> m_Segments;
 
     public float Speed = 25;
+    public float SpeedMultiplier = 1;
     public int InitialSize = 4;
     public Rigidbody2D Rigidbody;
     public Transform BodySegment;
@@ -26,7 +27,7 @@ public class SnakeScript : MonoBehaviour
         m_Direction = Vector2.down;
         m_Segments = new List<Transform>() {transform };
 
-        InvokeRepeating("Move", 0.2f, 1/Speed);
+        InvokeRepeating("Move", 0.2f, 1/(Speed * SpeedMultiplier));
 
         for (int i = 0; i < InitialSize; i++)
         {

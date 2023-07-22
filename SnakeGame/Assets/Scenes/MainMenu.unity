@@ -1085,8 +1085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1617402578}
-  - component: {fileID: 1617402577}
-  - component: {fileID: 1617402576}
+  - component: {fileID: 1617402579}
   m_Layer: 0
   m_Name: InstanceData
   m_TagString: DontDestroy
@@ -1094,31 +1093,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1617402576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1617402575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df090b8162c495a43a0c7b95123a1791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectId: 
---- !u!114 &1617402577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1617402575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32103abe2827b454a9f834286f90a051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1617402578
 Transform:
   m_ObjectHideFlags: 0
@@ -1134,6 +1108,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1617402579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617402575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755bab886cace2a49adeca64d91674df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1859029350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,6 +1374,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: ExitScene
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1617402579}
+        m_TargetAssemblyTypeName: Assets.Scripts.InstanceData, Assembly-CSharp
+        m_MethodName: SaveData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1929398211

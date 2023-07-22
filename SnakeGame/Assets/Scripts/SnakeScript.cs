@@ -1,22 +1,26 @@
+using Assets.Scripts;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SnakeScript : MonoBehaviour
 {
     private Dictionary<KeyCode, Vector2> m_DirectionResolver;
     private Vector2 m_Direction;
     private List<Transform> m_Segments;
+    private bool m_IsDead;
+
+    [SerializeField] Canvas RespawnMenu;
+    [SerializeField] int InitialSize = 4;
 
     public float Speed = 25;
-    public float SpeedMultiplier = 1;
-    public int InitialSize = 4;
+    public float SpeedMultiplier;
     public Rigidbody2D Rigidbody;
     public Transform BodySegment;
 
-    // Start is called before the first frame update
     void Start()
     {
+        SpeedMultiplier = InstanceData.Instance.Data.SpeedMultiplier;
+
         m_DirectionResolver = new Dictionary<KeyCode, Vector2>()
         {
             {KeyCode.A, Vector2.left },
@@ -26,6 +30,8 @@ public class SnakeScript : MonoBehaviour
         };
         m_Direction = Vector2.down;
         m_Segments = new List<Transform>() {transform };
+        RespawnMenu.gameObject.SetActive(false);
+        m_IsDead = false;
 
         InvokeRepeating("Move", 0.2f, 1/(Speed * SpeedMultiplier));
 
@@ -35,7 +41,6 @@ public class SnakeScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         foreach (KeyCode key in m_DirectionResolver.Keys)
@@ -55,7 +60,9 @@ public class SnakeScript : MonoBehaviour
         }
         if (collision.tag == "Boundary" || collision.tag == "Player")
         {
-            SceneManager.LoadScene(0);
+            RespawnMenu.gameObject.SetActive(true);
+            gameObject.SetActive(false);
+            m_IsDead = true;
         }
     }
 
@@ -68,6 +75,11 @@ public class SnakeScript : MonoBehaviour
 
     private void Move()
     {
+        if (m_IsDead)
+        {
+            return;
+        }
+
         for (int i = m_Segments.Count - 1; i > 0; i--) 
         {
             m_Segments[i].position = m_Segments[i-1].position;

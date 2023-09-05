@@ -1,19 +1,12 @@
 using UnityEngine;
 
-public class FoodScript : MonoBehaviour
+public sealed class FoodScript : MonoBehaviour
 {
     public BoxCollider2D SpawnArea;
 
-    // Start is called before the first frame update
     void Start()
     {
         RandomizePosition();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

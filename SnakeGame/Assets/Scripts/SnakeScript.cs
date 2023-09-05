@@ -1,13 +1,18 @@
 using Assets.Scripts;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SnakeScript : MonoBehaviour
+public sealed class SnakeScript : MonoBehaviour
 {
     private Dictionary<KeyCode, Vector2> m_DirectionResolver;
     private Vector2 m_Direction;
     private List<Transform> m_Segments;
     private bool m_IsDead;
+    private int score;
 
     [SerializeField] Canvas RespawnMenu;
     [SerializeField] int InitialSize = 4;
@@ -20,7 +25,7 @@ public class SnakeScript : MonoBehaviour
     void Start()
     {
         SpeedMultiplier = InstanceData.Instance.Data.SpeedMultiplier;
-
+        score = 0;
         m_DirectionResolver = new Dictionary<KeyCode, Vector2>()
         {
             {KeyCode.A, Vector2.left },
@@ -56,11 +61,22 @@ public class SnakeScript : MonoBehaviour
     {
         if (collision.tag == "Food")
         {
+            score++;
             Grow();
         }
         if (collision.tag == "Boundary" || collision.tag == "Player")
         {
             RespawnMenu.gameObject.SetActive(true);
+            TMP_Text highScoreDisplay = RespawnMenu.transform.Find("High Score Display").GetComponent<TMP_Text>();
+            if (highScoreDisplay)
+            {
+                InstanceData.Instance.Data.HighScore = Mathf.Max(score, InstanceData.Instance.Data.HighScore);
+                highScoreDisplay.text += InstanceData.Instance.Data.HighScore.ToString();
+            }
+            else
+            {
+                Debug.LogError("Error High Score Display object not found");
+            }
             gameObject.SetActive(false);
             m_IsDead = true;
         }
@@ -72,6 +88,7 @@ public class SnakeScript : MonoBehaviour
         segment.position = m_Segments[m_Segments.Count - 1].position - new Vector3(m_Direction.x * 2, m_Direction.y * 2, 0f);
         m_Segments.Add(segment);
     }
+
 
     private void Move()
     {
